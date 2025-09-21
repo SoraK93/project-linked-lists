@@ -91,11 +91,51 @@ class LinkedList {
     return temp;
   }
 
-//   at(index) {
-//     if (index > this.#size) {
-//       throw new Error("Given index is out of range");
-//     }
-//   }
+  /** Get the node at given index */
+  at(index) {
+    if (index > this.#size) {
+      throw new Error("Given index is out of range");
+    } else if (index === this.#size) {
+      return this.#tail;
+    }
+
+    let currIndex = 1;
+    let curr = this.#head;
+    while (currIndex !== index) {
+      curr = curr.nextNode;
+      currIndex++;
+    }
+
+    return curr;
+  }
+
+  contains(value) {
+    let curr = this.#head;
+
+    while(curr !== null) {
+        if (curr.value === value) {
+            return true;
+        }
+        curr = curr.nextNode;
+    }
+
+    return false;
+  }
+
+  find(value) {
+    let curr = this.#head;
+    let index = 1;
+
+    while(curr !== null) {
+        if (curr.value === value) {
+            return index;
+        }
+        index++;
+        curr = curr.nextNode;
+    }
+
+    return null;
+  }
 
   /** Get instance variable of the linked list */
   get size() {
@@ -110,3 +150,9 @@ class LinkedList {
   }
 }
 
+let dataLL1 = new LinkedList();
+dataLL1.append("head");
+dataLL1.append("newtail");
+dataLL1.prepend("newhead");
+
+console.log(dataLL1.find("newtail"));
