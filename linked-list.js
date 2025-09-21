@@ -109,6 +109,31 @@ class LinkedList {
     return curr;
   }
 
+  /** Remove node from the target index */
+  removeAt(index) {
+    if (index === 1) return this.#head;
+    let prev = this.at(index - 1);
+    let curr = prev.nextNode;
+    prev.nextNode = curr.nextNode;
+    return curr;
+  }
+
+  insertAt(value, index) {
+    
+    let node = new Node(value);
+
+    if (index === 1) {
+        node.nextNode = this.#head;
+        this.#head = node;
+        return node;
+    };
+
+    let prev = this.at(index - 1);
+    node.nextNode = prev.nextNode;
+    prev.nextNode = node;
+    return node;
+  }
+
   /** return true if value present inside linked list else return null */
   contains(value) {
     let curr = this.#head;
@@ -159,8 +184,10 @@ class LinkedList {
         process.stdout.write(`( ${curr.value} ) -> `);
         curr = curr.nextNode;
     }
-    process.stdout.write(`${curr}`);
+    process.stdout.write(`${curr}\n`);
   }
+
+  
 }
 
 const list = new LinkedList();
@@ -171,6 +198,8 @@ list.append("parrot");
 list.append("hamster");
 list.append("snake");
 list.append("turtle");
-
 list.toString();
-
+list.removeAt(3);
+list.toString();
+list.insertAt("parrot", 3);
+list.toString();
