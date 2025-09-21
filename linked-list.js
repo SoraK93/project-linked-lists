@@ -18,8 +18,19 @@ class LinkedList {
     this.#size = 0;
   }
 
+  //  private method
+  /** Increase size by 1 for each new Node `append(value)`/ `prepend(value)` */
+  #addToSize() {
+    this.#size++;
+  }
+
+  /** Decrease size by 1 for each new Node `pop()` */
+  #subtractToSize() {
+    this.#size--;
+  }
+
   /** Add value to the end of the linked list
-   * @value `{Node}`
+   * @value {Node}
    */
   append(value) {
     if (value === undefined || value === null) {
@@ -40,7 +51,7 @@ class LinkedList {
   }
 
   /** Add value to the start of the linked list
-   * @value `{Node}`
+   * @value {Node}
    */
   prepend(value) {
     if (value === undefined || value === null) {
@@ -60,10 +71,31 @@ class LinkedList {
     this.#addToSize();
   }
 
-  /** Increase size by 1 for each new Node `append(value)`/ `prepend(value)` */
-  #addToSize() {
-    this.#size++;
+  /** Remove the last node from the linked list */
+  pop() {
+    let curr = this.#head;
+    if (this.#size === 1) {
+      this.#head = this.#tail = null;
+      this.#subtractToSize();
+      return curr;
+    }
+
+    while (curr.nextNode.nextNode !== null) {
+      curr = curr.nextNode;
+    }
+
+    let temp = curr.nextNode;
+    curr.nextNode = null;
+    this.#tail = curr;
+    this.#subtractToSize();
+    return temp;
   }
+
+//   at(index) {
+//     if (index > this.#size) {
+//       throw new Error("Given index is out of range");
+//     }
+//   }
 
   /** Get instance variable of the linked list */
   get size() {
@@ -78,10 +110,3 @@ class LinkedList {
   }
 }
 
-let data2 = new Node("data2");
-// console.log(data2);
-let dataLL1 = new LinkedList();
-dataLL1.append("tail");
-dataLL1.append("newtail");
-dataLL1.prepend("head");
-console.log(dataLL1.head);
