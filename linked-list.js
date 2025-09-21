@@ -109,6 +109,7 @@ class LinkedList {
     return curr;
   }
 
+  /** return true if value present inside linked list else return null */
   contains(value) {
     let curr = this.#head;
 
@@ -122,6 +123,7 @@ class LinkedList {
     return false;
   }
 
+  /** If the value is present return its index else return null */
   find(value) {
     let curr = this.#head;
     let index = 1;
@@ -148,11 +150,27 @@ class LinkedList {
   get tail() {
     return this.#tail;
   }
+
+  /** print out the entire linked list */
+  toString() {
+    let curr = this.#head;
+
+    while (curr !== null) {
+        process.stdout.write(`( ${curr.value} ) -> `);
+        curr = curr.nextNode;
+    }
+    process.stdout.write(`${curr}`);
+  }
 }
 
-let dataLL1 = new LinkedList();
-dataLL1.append("head");
-dataLL1.append("newtail");
-dataLL1.prepend("newhead");
+const list = new LinkedList();
 
-console.log(dataLL1.find("newtail"));
+list.append("dog");
+list.append("cat");
+list.append("parrot");
+list.append("hamster");
+list.append("snake");
+list.append("turtle");
+
+list.toString();
+
