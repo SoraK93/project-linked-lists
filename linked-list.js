@@ -5,7 +5,7 @@ class Node {
   }
 }
 
-class LinkedList {
+export class LinkedList {
   // private variables
   #head;
   #tail;
@@ -119,7 +119,6 @@ class LinkedList {
   }
 
   insertAt(value, index) {
-    
     let node = new Node(value);
 
     if (index === 1) {
@@ -135,9 +134,8 @@ class LinkedList {
   }
 
   /** return true if value present inside linked list else return null */
-  contains(value) {
+  contain(value) {
     let curr = this.#head;
-
     while(curr !== null) {
         if (curr.value === value) {
             return true;
@@ -190,16 +188,12 @@ class LinkedList {
   
 }
 
-const list = new LinkedList();
+// const list = new LinkedList();
 
-list.append("dog");
-list.append("cat");
-list.append("parrot");
-list.append("hamster");
-list.append("snake");
-list.append("turtle");
-list.toString();
-list.removeAt(3);
-list.toString();
-list.insertAt("parrot", 3);
-list.toString();
+// list.append("dog");
+// list.append("cat");
+// list.prepend("parrot");
+// list.append("hamster");
+// list.append("snake");
+// list.prepend("turtle");
+// list.toString();
